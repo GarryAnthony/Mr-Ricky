@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun, Mr. Ricky!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #58a6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .terminal-container {
+            background-color: #161b22;
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .terminal-header {
+            background-color: #21262d;
+            padding: 10px;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .buttons { display: flex; gap: 8px; }
+        .btn { width: 12px; height: 12px; border-radius: 50%; }
+        .btn-red { background-color: #ff5f56; }
+        .btn-yellow { background-color: #ffbd2e; }
+        .btn-green { background-color: #27c93f; }
+        .title { color: #8b949e; margin-left: 20px; font-size: 14px; }
+
+        .terminal-body { padding: 20px; font-size: 16px; line-height: 1.6; }
+        .code-line { margin-bottom: 12px; display: flex; }
+        .line-num { color: #3b4252; margin-right: 15px; user-select: none; }
+
+        .keyword { color: #ff7b72; }
+        .function { color: #d2a6ff; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; }
+        .variable { color: #ffa657; }
+
+        .hidden-wish {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px dashed #30363d;
+            padding-top: 20px;
+            color: #7ee787;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .photo-container {
+            width: 100%;
+            margin: 15px 0;
+            border: 2px solid #30363d;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #0d1117;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .compile-btn {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        .compile-btn:hover { background-color: #2ea043; }
+
+        /* Efek Ledakan Partikel Menggunakan CSS Murni */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="terminal-container">
+    <div class="terminal-header">
+        <div class="buttons">
+            <div class="btn btn-red"></div>
+            <div class="btn btn-yellow"></div>
+            <div class="btn btn-green"></div>
+        </div>
+        <div class="title">hbd_mr_ricky.py</div>
+    </div>
+    
+    <div class="terminal-body">
+        <div class="code-line">
+            <span class="line-num">01</span>
+            <span><span class="keyword">import</span> datetime</span>
+        </div>
+        <div class="code-line">
+            <span class="line-num">02</span>
+            <span><span class="variable">guru_informatika</span> = <span class="string">"Mr. Ricky"</span></span>
+        </div>
+        <div class="code-line">
+            <span class="line-num">03</span>
+            <span><span class="keyword">def</span> <span class="function">cek_hari_spesial</span>():</span>
+        </div>
+        <div class="code-line">
+            <span class="line-num">04</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"SELAMAT ULANG TAHUN!"</span></span>
+        </div>
+        <div class="code-line">
+            <span class="line-num">05</span>
+            <span><span class="comment"># Klik tombol di bawah untuk mengeksekusi script</span></span>
+        </div>
+
+        <button class="compile-btn" onclick="jalankanKode(event)">▶ Run Code</button>
+
+        <div class="hidden-wish" id="output">
+            <p><strong>[OUTPUT]:</strong> 🚀</p>
+            
+            <div class="photo-container">
+                <!-- Ganti foto_mr_ricky.jpg jika ada file lokalnya -->
+                <img src="foto_mr_ricky.jpg" alt="Foto Ucapan" onerror="this.style.display='none'">
+            </div>
+
+            <p style="color: #ff7b72; font-size: 22px; font-weight: bold; margin: 10px 0;">✨ Happy Birthday, Mr. Ricky! ✨</p>
+            <p>Selamat ulang tahun untuk Mr. Ricky! Terima kasih telah membimbing kami di dunia IT, mengajari logika berpikir, dan membuat pelajaran Informatika jadi seru. Semoga hidup Mr. Ricky selalu penuh berkat, sukses dalam karier, selalu dilancarkan 'compilation'-nya, dan dijauhkan dari segala 'bug' kehidupan! 💻🎉</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fitur Audio Handal Tanpa File Musik: Menghasilkan nada 8-bit komputer asli
+    function bunyikanNada(frekuensi, durasi, waktuMulai) {
+        try {
+            var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            var oscillator = audioCtx.createOscillator();
+            var gainNode = audioCtx.createGain();
+
+            oscillator.type = 'square'; // Karakter suara retro/komputer
+            oscillator.frequency.value = frekuensi;
+            
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime + waktuMulai);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + waktuMulai + durasi);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start(audioCtx.currentTime + waktuMulai);
+            oscillator.stop(audioCtx.currentTime + waktuMulai + durasi);
+        } catch(e) {
+            console.log("Audio API tidak didukung");
+        }
+    }
+
+    // Melodi Ringkas Lagu Happy Birthday (Nada & Jeda Waktu)
+    function putarMelodiHBD() {
+        var nada = [261, 261, 293, 261, 349, 329]; // C4, C4, D4, C4, F4, E4
+        var durasi = [0.3, 0.3, 0.5, 0.5, 0.5, 0.8];
+        var jeda = [0, 0.4, 0.8, 1.4, 2.0, 2.6];
+
+        for (var i = 0; i < nada.length; i++) {
+            bunyikanNada(nada[i], durasi[i], jeda[i]);
+        }
+    }
+
+    // Fitur Kembang Api CSS Ringan Tanpa Library Luar
+    function buatKembangApi(clickEvent) {
+        var jumlahPartikel = 40;
+        var warna = ['#ff5f56', '#ffbd2e', '#27c93f', '#58a6ff', '#d2a6ff'];
+        
+        for (var i = 0; i < jumlahPartikel; i++) {
+            var p = document.createElement('div');
+            p.className = 'particle';
+            p.style.backgroundColor = warna[Math.floor(Math.random() * warna.length)];
+            
+            // Posisi awal ledakan pada tombol yang diklik
+            p.style.left = clickEvent.clientX + 'px';
+            p.style.top = clickEvent.clientY + 'px';
+            
+            // Kalkulasi arah sebaran acak
+            var sudut = Math.random() * Math.PI * 2;
+            var jarak = Math.random() * 150 + 50;
+            var x = Math.cos(sudut) * jarak;
+            var y = Math.sin(sudut) * jarak;
+            
+            p.style.setProperty('--x', x + 'px');
+            p.style.setProperty('--y', y + 'px');
+            p.style.animation = 'explode 0.8s ease-out forwards';
+            
+            document.body.appendChild(p);
+            
+            // Hapus elemen sampah setelah animasi selesai agar memori bersih
+            setTimeout((function(el) { return function() { el.remove(); }; })(p), 800);
+        }
+    }
+
+    function jalankanKode(e) {
+        // Tampilkan teks ucapan instan tanpa loading
+        var outputDiv = document.getElementById("output");
+        outputDiv.style.display = "block";
+        outputDiv.scrollIntoView({ behavior: 'smooth' });
+
+        // Jalankan audio retro internal
+        putarMelodiHBD();
+
+        // Jalankan animasi partikel internal
+        buatKembangApi(e);
+    }
+</script>
+
+</body>
+</html>
